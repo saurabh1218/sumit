@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('birthday-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      color: #ffffff;
+      margin-top: 20px;
+      text-shadow: 2px 2px 8px #000;
+      display: none;
+    }
+
+    .photo {
+      margin: 30px auto;
+      display: none;
+    }
+
+    .photo img {
+      width: 300px;
+      height: auto;
+      border-radius: 20px;
+      border: 4px solid white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn {
+      margin-top: 200px;
+      padding: 18px 36px;
+      font-size: 1.3rem;
+      background-color: #ff416c;
+      border: none;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .balloon {
+      position: absolute;
+      width: 50px;
+      height: 70px;
+      background: red;
+      border-radius: 0 0 25px 25px;
+      animation: float 10s infinite;
+      z-index: 0;
+    }
+
+    .balloon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 30px;
+      background: #333;
+      transform: translateX(-50%);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<button class="btn" onclick="startCelebration()">🎁 Click for Surprise</button>
+
+<h1 id="wish">🎉 Happy Birthday! 🎂 Sumit Yadav </h1>
+
+<div class="photo" id="photoBox">
+  <img src="p4.png" alt="Birthday Photo">
+</div>
+
+<audio id="birthdayMusic" src="music.mp3"></audio>
+
+<script>
+  function startCelebration() {
+    document.querySelector('.btn').style.display = 'none';
+
+    document.getElementById('wish').style.display = 'block';
+    document.getElementById('photoBox').style.display = 'block';
+
+    document.getElementById('birthdayMusic').play();
+
+    for (let i = 0; i < 25; i++) {
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.backgroundColor = getRandomColor();
+      balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.body.appendChild(balloon);
+    }
+  }
+
+  function getRandomColor() {
+    const colors = ["#ff4d6d", "#6a4c93", "#ffc300", "#06d6a0", "#4ea8de"];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+</script>
+
+</body>
+</html>
